@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Button from "./Button/Button";
 import ButtonProps from './ButtonProps/ButtonProps';
+import Counter from './Counter/Counter';
 
 function App() {
   return (
@@ -9,8 +10,9 @@ function App() {
       <header className="App-header">
       </header>
       <h1>My React App</h1>
+      {/* <ButtonProps/> */}
       <Button/>
-      <ButtonProps/>
+      <Counter/>
     </div>
   );
 }

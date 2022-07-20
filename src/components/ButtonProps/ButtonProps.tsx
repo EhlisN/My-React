@@ -1,9 +1,21 @@
 import React from 'react';
 import './ButtonProps.css';
 
-const ButtonProps = () => {
+const ButtonProps = (
+  {
+    color = 'blue',
+    disabled, 
+    children,
+    onClick
+  }:
+  {
+    color?: string, // name? - не обязательный пропертис
+    disabled?: boolean,
+    children: React.ReactNode
+    onClick: () => void;
+  }) => {
   return (
-    <button className='my-button_props'>Click me!!!</button>
+    <button onClick={onClick} style={{color: color}} className='my-button_props'>{children}</button>
   )
 }
 

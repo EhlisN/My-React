@@ -1,5 +1,5 @@
 .my-button_props {
+    display: block;
+    margin: 20px auto;
     padding: 10px 20px;
-    background-color: rgb(197, 136, 136);
-    color: #fff;
 }
