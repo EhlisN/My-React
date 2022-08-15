@@ -1,18 +1,13 @@
 import React from 'react';
 import './App.css';
-import Button from "./Button/Button";
-import ButtonProps from './ButtonProps/ButtonProps';
-import Counter from './Counter/Counter';
+import Users from './Users/Users';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <h1>My React App</h1>
-      {/* <ButtonProps/> */}
-      <Button/>
-      <Counter/>
+    <div className="App container">
+      <header className='App-header'></header>
+      <h1 className='mt-5'>My React App</h1>
+      <Users></Users>
     </div>
   );
 }
