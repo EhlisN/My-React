@@ -12,8 +12,7 @@ const Users:FC = () => {
     }
 
     const searchUser = (event: string) => {
-        let newUser = USERS;
-        return setUsers(newUser.filter(user => user.name.toLowerCase().includes(event.toLowerCase())));
+        return setUsers(USERS.filter(user => user.name.toLowerCase().includes(event.toLowerCase())));
     }
     
     return (
