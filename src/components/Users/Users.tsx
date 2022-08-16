@@ -10,9 +10,12 @@ const Users:FC = () => {
             setUsers(users.filter(user => user.id !== id));
         }
     }
+
     const searchUser = (event: string) => {
-        
+        let newUser = USERS;
+        return setUsers(newUser.filter(user => user.name.toLowerCase().includes(event.toLowerCase())));
     }
+    
     return (
         <>
         <div className="input-group mb-3">
