@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import Users from '../pages/Users';
 import NavBar from './NavBar';
 import AppRoutes from './AppRoutes';
 
 function App() {
   return (
-    <div className='App container'>
+    <div className='App'>
       <NavBar />
       <div className='container'>
         <AppRoutes />

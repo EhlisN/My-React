@@ -3,12 +3,14 @@ import { IUser } from '../components/Users/IUser';
 import http from '../http';
 import UserCards from '../components/Users/UserCards';
 import UserAddForm from '../components/Users/UserAddForm';
+import Search from '../components/Users/Search';
 import { useSearch } from '../hooks/useSearch';
 
 const Users: FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
-  const [search, setSearch] = useState('');
   const [showUserForm, setShowUserForm] = useState(false);
+  const [search, setSearch] = useState('');
+  const searchedUsers = useSearch(users, 'name', search);
 
   useEffect(() => {
     getUsers();
@@ -43,24 +45,9 @@ const Users: FC = () => {
     }
   };
 
-  const searchedUsers = useSearch(users, 'name', search);
-
   return (
     <>
-      <div className='input-group mb-3'>
-        <span className='input-group-text' id='basic-addon1'>
-          Search
-        </span>
-        <input
-          type='text'
-          className='form-control'
-          placeholder='Username'
-          aria-label='Username'
-          aria-describedby='basic-addon1'
-          onChange={(event) => setSearch(event.target.value)}
-        />
-      </div>
-
+      <Search setSearch={setSearch} />
       <button
         className='btn btn-success mt-3 mb-3'
         onClick={() => setShowUserForm(!showUserForm)}
