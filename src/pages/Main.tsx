@@ -20,7 +20,7 @@ const Main = () => {
   };
   return (
     <>
-      <h1>Hello my freinds!!!</h1>
+      <h1>Hello my friends!!!</h1>
       <p>You can enjoy beautiful pictures...</p>
 
       <div>
