@@ -1,25 +1,25 @@
 import React, { Dispatch } from 'react';
 
-const Search = ({
+const SearchUser = ({
+  name,
   setSearch,
 }: {
+  name: string;
   setSearch: Dispatch<React.SetStateAction<string>>;
 }) => {
   return (
-    <div className='input-group mb-3'>
+    <div className='input-group mb-3 mt-3'>
       <span className='input-group-text' id='basic-addon1'>
         Search
       </span>
       <input
         type='text'
         className='form-control'
-        placeholder='Username'
-        aria-label='Username'
-        aria-describedby='basic-addon1'
+        placeholder={name}
         onChange={(event) => setSearch(event.target.value)}
       />
     </div>
   );
 };
 
-export default Search;
+export default SearchUser;

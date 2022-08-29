@@ -8,8 +8,8 @@ const NavBar = () => {
         <div className='collapse navbar-collapse' id='navbarText'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
-              <Link className='nav-link active' aria-current='page' to='users'>
-                Users
+              <Link className='nav-link' aria-current='page' to='main'>
+                Main
               </Link>
             </li>
             <li className='nav-item'>
@@ -18,8 +18,8 @@ const NavBar = () => {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link className='nav-link' to='main'>
-                Main
+              <Link className='nav-link' to='users'>
+                Users
               </Link>
             </li>
           </ul>

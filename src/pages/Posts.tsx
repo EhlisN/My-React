@@ -1,16 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Loader from '../components/Loader';
+import { IPosts } from '../components/Posts/IPosts';
+import Search from '../components/Search/Search';
+import { useSearch } from '../hooks/useSearch';
+import httpsPosts from '../https/httpsPosts';
 
 const Posts = () => {
+  const [posts, setPosts] = useState<IPosts[]>([]);
+  const [search, setSearch] = useState('');
+  const searchedPost = useSearch(posts, 'title', search);
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
+  const getPosts = async () => {
+    try {
+      const getNewPosts = await httpsPosts.get('');
+      setPosts(getNewPosts.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  let key = 0;
+
   return (
-    <div className='container'>
-      <h1>Posts</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit
-        obcaecati architecto inventore dignissimos, molestiae aliquam! Minus
-        molestiae nisi fuga laudantium maxime ea. Quae ducimus explicabo
-        consequatur magni repellendus ut odio!
-      </p>
-    </div>
+    <>
+      <Search setSearch={setSearch} name={'Title'} />
+      {posts.length ? (
+        searchedPost.map((post) => {
+          return (
+            <div className='card mb-3' key={key++}>
+              <h4 className='card-header'>{post.title}</h4>
+              <div className='card-body'>
+                <h5 className='card-title'>Author: {post.author}</h5>
+                <h5 className='card-title'>Genre: {post.genre}</h5>
+                <p className='card-text'>{post.content}</p>
+              </div>
+            </div>
+          );
+        })
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 };
 

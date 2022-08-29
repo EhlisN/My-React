@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect } from 'react';
 import { IUser } from '../components/Users/IUser';
-import http from '../http';
 import UserCards from '../components/Users/UserCards';
 import UserAddForm from '../components/Users/UserAddForm';
-import Search from '../components/Users/Search';
+import Search from '../components/Search/Search';
 import { useSearch } from '../hooks/useSearch';
+import http from '../https/http';
 
 const Users: FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -47,7 +47,7 @@ const Users: FC = () => {
 
   return (
     <>
-      <Search setSearch={setSearch} />
+      <Search setSearch={setSearch} name={'Username'} />
       <button
         className='btn btn-success mt-3 mb-3'
         onClick={() => setShowUserForm(!showUserForm)}

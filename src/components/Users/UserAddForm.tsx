@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { IUser } from './IUser';
 import { initialUser } from './initialUser';
-import http from '../../http';
+import http from '../../https/http';
 
 const UserAddForm = ({
   setUsers,
