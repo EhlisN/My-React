@@ -1,54 +1,64 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import Context from '../../context/context';
+import http from '../../https/http';
 
 const LogIn = () => {
-  const [dataUser, setDataUser] = useState({} as ILogIn);
+  const { setOpenModal, setIsLoginUser } = useContext(Context);
+  const location = useLocation();
+  const isLogin = location.pathname === '/login';
+  const [login, setLogin] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('cityslicka');
+
+  const authorization = async () => {
+    const data = { email: login, password: password };
+    const authorizationData = await http.post(
+      `https://reqres.in/api/${isLogin ? 'login' : 'register'}`,
+      data
+    );
+    if (authorizationData.data.token) {
+      localStorage.setItem('token', authorizationData.data.token);
+      setIsLoginUser(true);
+      setOpenModal(false);
+    }
+    if (authorizationData.data.email) {
+      alert('Congratulation, you are awesome!');
+      setLogin('');
+      setPassword('');
+    }
+    // console.log(authorizationData.data);
+  };
+
   return (
-    <form>
-      <div className='mb-3'>
-        <label htmlFor='exampleInputEmail1' className='form-label'>
-          Email address
-        </label>
-        <input
-          type='email'
-          className='form-control'
-          id='exampleInputEmail1'
-          aria-describedby='emailHelp'
-        />
-        <div id='emailHelp' className='form-text'>
-          We'll never share your email with anyone else.
-        </div>
-      </div>
-      <div className='mb-3'>
-        <label htmlFor='exampleInputPassword1' className='form-label'>
-          Password
-        </label>
-        <input
-          type='password'
-          className='form-control'
-          id='exampleInputPassword1'
-        />
-      </div>
-      <div className='mb-3 form-check'>
-        <input
-          type='checkbox'
-          className='form-check-input'
-          id='exampleCheck1'
-        />
-        <label className='form-check-label' htmlFor='exampleCheck1'>
-          Check me out
-        </label>
-      </div>
-      <button type='submit' className='btn btn-primary'>
-        Submit
+    <div className='row container'>
+      <input
+        className='m-3 form-control'
+        placeholder='Input value'
+        value={login}
+        onChange={(event) => setLogin(event.target.value)}
+      />
+      <input
+        className='m-3 form-control'
+        placeholder='Input password'
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <Link to={isLogin ? 'registration' : 'login'}>
+        {isLogin
+          ? 'Do not have an account? Registration!'
+          : 'Have an account? Login'}
+      </Link>
+      <button
+        className='btn btn-primary col-5 m-3'
+        onClick={() => authorization()}
+      >
+        {isLogin ? 'Login' : 'Registration'}
       </button>
-    </form>
+    </div>
   );
 };
 
 export default LogIn;
-
-interface ILogIn {
-  login: string;
-  password: string;
-}
