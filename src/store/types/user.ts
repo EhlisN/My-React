@@ -1,12 +1,14 @@
 import { IUser } from "../../components/Users/IUser";
 
 export interface UserState {
-    users: IUser[]
+    users: IUser[];
+    status?: number;
+    userId?: number
 }
 
 export enum UserActionType {
     GET_USERS = 'GET_USERS',
-    DELETE_USERS = 'DELETE_USERS'
+    DELETE_USER = 'DELETE_USER'
 }
 
 interface GetUsersAction {
@@ -15,8 +17,8 @@ interface GetUsersAction {
 }
 
 interface DeleteUsersAction {
-    type: UserActionType.DELETE_USERS
+    type: UserActionType.DELETE_USER
     payload: number
 }
 
-export type UsersAction = GetUsersAction
+export type UsersAction = GetUsersAction | DeleteUsersAction

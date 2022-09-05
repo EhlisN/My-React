@@ -23,20 +23,6 @@ const Users: FC = () => {
   //   if deps state - rerender onchange this state
   //   if in useEffect used return - unmount
 
-  const deleteUser = async (id: number) => {
-    const isDelete = window.confirm('Do you really delete this user?');
-    if (isDelete) {
-      try {
-        const deletedUser = await http.delete(`users/${id}`);
-        if (deletedUser) {
-          // setUsers(users.filter((user) => user.id !== id));
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
-
   return (
     <>
       <Search setSearch={setSearch} name={'Username'} />
@@ -47,7 +33,7 @@ const Users: FC = () => {
         Add new User
       </button>
       {/* {showUserForm && <UserAddForm setUsers={setUsers} users={users} />} */}
-      <UserCards users={searchedUsers} deleteUser={deleteUser} />
+      {/* <UserCards users={searchedUsers} deleteUser={deleteUser} /> */}
     </>
   );
 };
