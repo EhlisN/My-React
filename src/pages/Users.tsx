@@ -3,7 +3,6 @@ import UserCards from '../components/Users/UserCards';
 import UserAddForm from '../components/Users/UserAddForm';
 import Search from '../components/Search/Search';
 import { useSearch } from '../hooks/useSearch';
-import http from '../https/http';
 import { useAction } from '../hooks/useAction';
 import { useTypedSelector } from '../hooks/useTypedSelectors';
 
@@ -33,7 +32,7 @@ const Users: FC = () => {
         Add new User
       </button>
       {/* {showUserForm && <UserAddForm setUsers={setUsers} users={users} />} */}
-      {/* <UserCards users={searchedUsers} deleteUser={deleteUser} /> */}
+      <UserCards />
     </>
   );
 };

@@ -1,24 +1,22 @@
-import { IUser } from "../../components/Users/IUser";
+import { IUser } from '../../components/Users/IUser';
 
 export interface UserState {
-    users: IUser[];
-    status?: number;
-    userId?: number
+  users: IUser[];
 }
 
 export enum UserActionType {
-    GET_USERS = 'GET_USERS',
-    DELETE_USER = 'DELETE_USER'
+  GET_USERS = 'GET_USERS',
+  DELETE_USER = 'DELETE_USER',
 }
 
 interface GetUsersAction {
-    type: UserActionType.GET_USERS
-    payload: IUser[]
+  type: UserActionType.GET_USERS;
+  payload: IUser[];
 }
 
 interface DeleteUsersAction {
-    type: UserActionType.DELETE_USER
-    payload: number
+  type: UserActionType.DELETE_USER;
+  payload: { id: number };
 }
 
-export type UsersAction = GetUsersAction | DeleteUsersAction
+export type UsersAction = GetUsersAction | DeleteUsersAction;
